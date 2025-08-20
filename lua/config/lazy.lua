@@ -14,6 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     os.exit(1)
   end
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
@@ -21,7 +22,11 @@ vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
 	{"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate", opts = function()
-		require'nvim-treesitter.configs'.setup { auto_install = true, highlight = { enable = true, additional_vim_regex_highlighting = false}}
+		require'nvim-treesitter.configs'.setup {
+			highlight = {
+				enable = true, additional_vim_regex_highlighting = false
+			}
+		}
 	end
 	},
 	{'mason-org/mason.nvim', tag = 'stable', opts={}},

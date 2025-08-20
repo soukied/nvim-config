@@ -10,6 +10,7 @@ local lsp_configs = {
 	},
 	clangd = require('config.lsp.clangd'),
 	ts_ls = require('config.lsp.ts_ls'),
+	dartls = require('config.lsp.dartls'),
 }
 
 for k, v in pairs(lsp_configs) do
@@ -46,12 +47,14 @@ vim.keymap.set('i', '<CR>', function()
 end, { silent = true, expr = true})
 
 vim.diagnostic.config({
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = ' ',
-			[vim.diagnostic.severity.WARN] = ' ',
-			[vim.diagnostic.severity.INFO] = ' ',
-			[vim.diagnostic.severity.HINT] = ' ',
-		}
-	}
+ 	signs = {
+ 		text = {
+ 			[vim.diagnostic.severity.ERROR] = 'E',
+ 			[vim.diagnostic.severity.WARN] = 'W',
+ 			[vim.diagnostic.severity.INFO] = 'I',
+ 			[vim.diagnostic.severity.HINT] = 'H',
+ 		}
+ 	},
+	--signs = false,
+	virtual_text = true,
 })
